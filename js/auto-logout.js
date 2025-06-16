@@ -1,7 +1,7 @@
 // Auto-logout functionality
 class AutoLogout {
     constructor() {
-        this.inactivityTime = 60000; // 60 seconds
+        this.inactivityTime = 180000; // 60 seconds
         this.warningTime = 10000; // 10 seconds warning
         this.warningTimer = null;
         this.logoutTimer = null;
