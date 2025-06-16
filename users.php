@@ -48,4 +48,4 @@ $auth->checkSession();
 
     <script src="js/auto-logout.js"></script>
 </body>
-</html>
+</html>sdsf
