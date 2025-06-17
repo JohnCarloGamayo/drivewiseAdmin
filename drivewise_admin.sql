@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2025 at 01:45 PM
+-- Generation Time: Jun 17, 2025 at 04:31 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,8 +41,10 @@ CREATE TABLE `admin_users` (
 --
 
 INSERT INTO `admin_users` (`id`, `email`, `password`, `is_verified`, `created_at`, `updated_at`) VALUES
-(1, 'papsianrafael@gmail.com\r\n', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-16 02:20:49', '2025-06-16 05:19:15'),
-(2, 'rafaeliantimothy11@gmail.com', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-15 18:20:49', '2025-06-15 19:16:37');
+(1, 'johncarlogamayo@gmail.com', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-16 02:20:49', '2025-06-16 09:47:56'),
+(2, 'rafaeliantimothy11@gmail.com', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-15 18:20:49', '2025-06-15 19:16:37'),
+(3, 'papsianrafael@gmail.com\r\n', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-15 18:20:49', '2025-06-15 21:19:15'),
+(4, 'harveyc634@gmail.com', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-15 10:20:49', '2025-06-15 11:16:37');
 
 -- --------------------------------------------------------
 
@@ -65,7 +67,7 @@ CREATE TABLE `email_change_pins` (
 --
 
 INSERT INTO `email_change_pins` (`id`, `admin_id`, `pin`, `new_email`, `expires_at`, `used`, `created_at`) VALUES
-(1, 1, '754074', 'johncarlogayo@gmail.com', '2025-06-16 03:41:30', 0, '2025-06-16 02:57:13');
+(1, 1, '553031', 'johncarlogamayo@gmail.com', '2025-06-16 09:47:56', 1, '2025-06-16 02:57:13');
 
 -- --------------------------------------------------------
 
@@ -104,18 +106,32 @@ INSERT INTO `email_tokens` (`id`, `admin_id`, `token`, `expires_at`, `used`, `cr
 (15, 1, '793480', '2025-06-16 03:27:19', 1, '2025-06-16 03:27:09'),
 (16, 1, '210022', '2025-06-16 03:29:49', 1, '2025-06-16 03:29:27'),
 (17, 1, '642191', '2025-06-16 03:31:12', 1, '2025-06-16 03:30:52'),
-(18, 2, '928447', '2025-06-16 05:41:09', 1, '2025-06-16 05:40:50'),
-(19, 2, '166020', '2025-06-16 09:36:43', 1, '2025-06-16 09:36:08'),
-(20, 2, '169635', '2025-06-16 09:46:21', 1, '2025-06-16 09:45:55'),
-(21, 2, '721054', '2025-06-16 09:57:45', 1, '2025-06-16 09:57:17'),
-(22, 2, '855300', '2025-06-16 10:21:27', 1, '2025-06-16 10:21:07'),
-(23, 2, '864131', '2025-06-16 10:29:59', 1, '2025-06-16 10:29:43'),
-(24, 2, '355576', '2025-06-16 10:31:05', 1, '2025-06-16 10:30:49'),
-(25, 2, '965055', '2025-06-16 10:32:33', 1, '2025-06-16 10:32:22'),
-(26, 2, '401890', '2025-06-16 10:35:58', 1, '2025-06-16 10:35:43'),
-(27, 2, '598828', '2025-06-16 10:59:52', 1, '2025-06-16 10:59:35'),
-(28, 2, '388636', '2025-06-16 11:38:14', 1, '2025-06-16 11:37:46'),
-(29, 2, '696337', '2025-06-16 11:40:55', 1, '2025-06-16 11:40:43');
+(18, 1, '028983', '2025-06-16 04:36:49', 1, '2025-06-16 04:36:39'),
+(19, 1, '145034', '2025-06-16 05:36:18', 0, '2025-06-16 05:26:18'),
+(20, 1, '101622', '2025-06-16 05:27:51', 1, '2025-06-16 05:27:17'),
+(21, 2, '112540', '2025-06-16 05:39:46', 0, '2025-06-16 05:29:46'),
+(22, 1, '065569', '2025-06-16 09:47:32', 1, '2025-06-16 09:47:16'),
+(23, 1, '130027', '2025-06-16 12:15:26', 1, '2025-06-16 12:15:04'),
+(24, 1, '561892', '2025-06-16 12:24:13', 1, '2025-06-16 12:24:02'),
+(25, 1, '511768', '2025-06-16 12:30:15', 1, '2025-06-16 12:29:54'),
+(26, 1, '379331', '2025-06-16 12:33:09', 1, '2025-06-16 12:32:59'),
+(27, 1, '829099', '2025-06-16 12:49:49', 1, '2025-06-16 12:49:41'),
+(28, 1, '994103', '2025-06-16 13:00:35', 1, '2025-06-16 13:00:25'),
+(29, 1, '605959', '2025-06-16 13:08:48', 1, '2025-06-16 13:08:37'),
+(30, 1, '477619', '2025-06-16 13:16:35', 1, '2025-06-16 13:16:24'),
+(31, 1, '734607', '2025-06-16 13:29:51', 1, '2025-06-16 13:29:37'),
+(32, 1, '821745', '2025-06-16 13:43:19', 1, '2025-06-16 13:43:09'),
+(33, 1, '640334', '2025-06-17 02:14:20', 0, '2025-06-17 02:04:20'),
+(34, 1, '802776', '2025-06-17 02:18:12', 0, '2025-06-17 02:08:12'),
+(35, 1, '011584', '2025-06-17 02:23:04', 0, '2025-06-17 02:13:04'),
+(36, 1, '325605', '2025-06-17 02:23:21', 0, '2025-06-17 02:13:21'),
+(37, 1, '614553', '2025-06-17 02:23:32', 0, '2025-06-17 02:13:32'),
+(38, 1, '160470', '2025-06-17 02:23:43', 0, '2025-06-17 02:13:43'),
+(39, 1, '059588', '2025-06-17 02:30:03', 0, '2025-06-17 02:20:03'),
+(40, 1, '413638', '2025-06-17 02:31:06', 0, '2025-06-17 02:21:06'),
+(41, 1, '546163', '2025-06-17 02:31:17', 0, '2025-06-17 02:21:17'),
+(42, 1, '522553', '2025-06-17 02:24:44', 1, '2025-06-17 02:24:14'),
+(43, 1, '016375', '2025-06-17 02:35:07', 0, '2025-06-17 02:25:07');
 
 -- --------------------------------------------------------
 
@@ -143,14 +159,14 @@ CREATE TABLE `lessons` (
 --
 
 INSERT INTO `lessons` (`id`, `title`, `description`, `content`, `xp_reward`, `difficulty_level`, `category`, `duration_minutes`, `is_active`, `created_at`, `updated_at`, `order_index`) VALUES
-(1, 'Basic Traffic Rules', 'Learn fundamental traffic rules and regulations', NULL, 10, 'beginner', 'Traffic Rules', 15, 1, '2025-06-16 10:06:11', '2025-06-16 10:06:11', 1),
-(2, 'Road Signs Recognition', 'Identify and understand common road signs', NULL, 15, 'beginner', 'Road Signs', 20, 1, '2025-06-16 10:06:11', '2025-06-16 10:06:11', 2),
-(3, 'Parking Techniques', 'Master parallel and perpendicular parking', NULL, 20, 'intermediate', 'Parking', 25, 1, '2025-06-16 10:06:11', '2025-06-16 10:06:11', 3),
-(4, 'Highway Driving', 'Safe highway driving practices', NULL, 25, 'intermediate', 'Highway', 30, 1, '2025-06-16 10:06:11', '2025-06-16 10:06:11', 4),
-(5, 'Night Driving', 'Techniques for safe night driving', NULL, 30, 'advanced', 'Advanced', 35, 1, '2025-06-16 10:06:11', '2025-06-16 10:06:11', 5),
-(6, 'Weather Conditions', 'Driving in various weather conditions', NULL, 25, 'intermediate', 'Weather', 30, 1, '2025-06-16 10:06:11', '2025-06-16 10:06:11', 6),
-(7, 'Emergency Procedures', 'What to do in emergency situations', NULL, 35, 'advanced', 'Emergency', 40, 1, '2025-06-16 10:06:11', '2025-06-16 10:06:11', 7),
-(8, 'Vehicle Maintenance', 'Basic vehicle maintenance and checks', NULL, 20, 'beginner', 'Maintenance', 25, 1, '2025-06-16 10:06:11', '2025-06-16 10:06:11', 8);
+(1, 'Basic Traffic Rules', 'Learn fundamental traffic rules and regulations', NULL, 10, 'beginner', 'Traffic Rules', 15, 1, '2025-06-16 02:06:11', '2025-06-16 02:06:11', 1),
+(2, 'Road Signs Recognition', 'Identify and understand common road signs', NULL, 15, 'beginner', 'Road Signs', 20, 1, '2025-06-16 02:06:11', '2025-06-16 02:06:11', 2),
+(3, 'Parking Techniques', 'Master parallel and perpendicular parking', NULL, 20, 'intermediate', 'Parking', 25, 1, '2025-06-16 02:06:11', '2025-06-16 02:06:11', 3),
+(4, 'Highway Driving', 'Safe highway driving practices', NULL, 25, 'intermediate', 'Highway', 30, 1, '2025-06-16 02:06:11', '2025-06-16 02:06:11', 4),
+(5, 'Night Driving', 'Techniques for safe night driving', NULL, 30, 'advanced', 'Advanced', 35, 1, '2025-06-16 02:06:11', '2025-06-16 02:06:11', 5),
+(6, 'Weather Conditions', 'Driving in various weather conditions', NULL, 25, 'intermediate', 'Weather', 30, 1, '2025-06-16 02:06:11', '2025-06-16 02:06:11', 6),
+(7, 'Emergency Procedures', 'What to do in emergency situations', NULL, 35, 'advanced', 'Emergency', 40, 1, '2025-06-16 02:06:11', '2025-06-16 02:06:11', 7),
+(8, 'Vehicle Maintenance', 'Basic vehicle maintenance and checks', NULL, 20, 'beginner', 'Maintenance', 25, 1, '2025-06-16 02:06:11', '2025-06-16 02:06:11', 8);
 
 -- --------------------------------------------------------
 
@@ -162,40 +178,30 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password_hash` varchar(255) NOT NULL,
-  `first_name` varchar(50) DEFAULT NULL,
-  `last_name` varchar(50) DEFAULT NULL,
-  `xp_points` int(11) DEFAULT 0,
-  `level` int(11) DEFAULT 1,
-  `is_active` tinyint(1) DEFAULT 1,
+  `birthday` date DEFAULT NULL,
+  `play_time` int(11) DEFAULT 0,
+  `quizzes_passed` int(11) DEFAULT 0,
+  `modules_done` int(11) DEFAULT 0,
+  `points_earned` int(11) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `last_login` timestamp NULL DEFAULT NULL,
-  `profile_image` varchar(255) DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
-  `date_of_birth` date DEFAULT NULL,
-  `address` text DEFAULT NULL,
-  `city` varchar(100) DEFAULT NULL,
-  `state` varchar(100) DEFAULT NULL,
-  `country` varchar(100) DEFAULT NULL,
-  `postal_code` varchar(20) DEFAULT NULL
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password_hash`, `first_name`, `last_name`, `xp_points`, `level`, `is_active`, `created_at`, `updated_at`, `last_login`, `profile_image`, `phone`, `date_of_birth`, `address`, `city`, `state`, `country`, `postal_code`) VALUES
-(1, 'john_doe', 'john.doe@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'John', 'Doe', 150, 2, 1, '2024-01-15 02:30:00', '2025-06-16 10:06:11', '2024-01-20 06:22:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'jane_smith', 'jane.smith@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Jane', 'Smith', 320, 3, 1, '2024-01-10 01:15:00', '2025-06-16 10:06:11', '2024-01-21 08:45:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'mike_johnson', 'mike.johnson@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Mike', 'Johnson', 75, 1, 1, '2024-01-18 03:20:00', '2025-06-16 10:06:11', '2024-01-19 05:30:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'sarah_wilson', 'sarah.wilson@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Sarah', 'Wilson', 480, 4, 1, '2024-01-05 00:45:00', '2025-06-16 10:06:11', '2024-01-21 02:15:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 'david_brown', 'david.brown@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'David', 'Brown', 25, 1, 0, '2024-01-20 07:30:00', '2025-06-16 10:06:11', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 'lisa_garcia', 'lisa.garcia@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Lisa', 'Garcia', 200, 2, 1, '2024-01-12 04:00:00', '2025-06-16 10:06:11', '2024-01-20 01:30:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 'robert_taylor', 'robert.taylor@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Robert', 'Taylor', 350, 3, 1, '2024-01-08 06:15:00', '2025-06-16 10:06:11', '2024-01-21 03:20:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(8, 'emily_davis', 'emily.davis@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Emily', 'Davis', 120, 2, 1, '2024-01-16 08:45:00', '2025-06-16 10:06:11', '2024-01-20 07:10:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(9, 'chris_miller', 'chris.miller@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Chris', 'Miller', 90, 1, 1, '2024-01-19 02:30:00', '2025-06-16 10:11:16', '2024-01-21 00:45:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(10, 'amanda_wilson', 'amanda.wilson@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Amanda', 'Wilson', 275, 3, 1, '2024-01-11 05:20:00', '2025-06-16 10:06:11', '2024-01-20 09:30:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `username`, `email`, `birthday`, `play_time`, `quizzes_passed`, `modules_done`, `points_earned`, `created_at`, `updated_at`) VALUES
+(1, 'john_doe', 'john@example.com', '1995-03-15', 120, 5, 3, 75, '2025-06-16 12:48:05', '2025-06-16 12:48:05'),
+(2, 'jane_smith', 'jane@example.com', '1992-07-22', 450, 15, 8, 250, '2025-06-16 12:48:05', '2025-06-16 12:48:05'),
+(3, 'mike_wilson', 'mike@example.com', '1988-11-10', 890, 35, 20, 650, '2025-06-16 12:48:05', '2025-06-16 12:48:05'),
+(4, 'sarah_jones', 'sarah@example.com', '1997-01-05', 200, 8, 4, 150, '2025-06-16 12:48:05', '2025-06-16 12:48:05'),
+(5, 'alex_brown', 'alex@example.com', '1990-09-18', 1200, 50, 25, 800, '2025-06-16 12:48:05', '2025-06-16 12:48:05'),
+(6, 'emily_davis', 'emily@example.com', '1994-12-03', 60, 2, 1, 25, '2025-06-16 12:48:05', '2025-06-16 12:48:05'),
+(7, 'david_miller', 'david@example.com', '1991-06-28', 350, 12, 7, 320, '2025-06-16 12:48:05', '2025-06-16 12:48:05'),
+(8, 'lisa_garcia', 'lisa@example.com', '1996-04-14', 180, 6, 3, 90, '2025-06-16 12:48:05', '2025-06-16 12:48:05'),
+(9, 'tom_anderson', 'tom@example.com', '1989-08-07', 750, 28, 15, 550, '2025-06-16 12:48:05', '2025-06-16 12:48:05'),
+(10, 'anna_taylor', 'anna@example.com', '1993-02-20', 95, 3, 2, 45, '2025-06-16 12:48:05', '2025-06-16 12:48:05');
 
 -- --------------------------------------------------------
 
@@ -220,20 +226,20 @@ CREATE TABLE `user_lessons` (
 --
 
 INSERT INTO `user_lessons` (`id`, `user_id`, `lesson_id`, `completed`, `score`, `time_spent_minutes`, `started_at`, `completed_at`, `attempts`) VALUES
-(1, 1, 1, 1, 85, 18, '2025-06-16 10:06:11', '2024-01-15 03:00:00', 1),
-(2, 1, 2, 1, 92, 22, '2025-06-16 10:06:11', '2024-01-15 04:30:00', 1),
-(3, 1, 3, 0, NULL, 10, '2025-06-16 10:06:11', NULL, 1),
-(4, 2, 1, 1, 95, 15, '2025-06-16 10:06:11', '2024-01-10 02:00:00', 1),
-(5, 2, 2, 1, 88, 20, '2025-06-16 10:06:11', '2024-01-10 03:30:00', 1),
-(6, 2, 3, 1, 90, 25, '2025-06-16 10:06:11', '2024-01-11 06:00:00', 1),
-(7, 2, 4, 1, 87, 28, '2025-06-16 10:06:11', '2024-01-12 08:00:00', 1),
-(8, 3, 1, 1, 78, 20, '2025-06-16 10:06:11', '2024-01-18 04:00:00', 2),
-(9, 3, 2, 0, NULL, 15, '2025-06-16 10:06:11', NULL, 1),
-(10, 4, 1, 1, 98, 14, '2025-06-16 10:06:11', '2024-01-05 01:30:00', 1),
-(11, 4, 2, 1, 94, 18, '2025-06-16 10:06:11', '2024-01-05 03:00:00', 1),
-(12, 4, 3, 1, 91, 24, '2025-06-16 10:06:11', '2024-01-06 05:30:00', 1),
-(13, 4, 4, 1, 89, 29, '2025-06-16 10:06:11', '2024-01-07 07:00:00', 1),
-(14, 4, 5, 1, 93, 33, '2025-06-16 10:06:11', '2024-01-08 02:30:00', 1);
+(1, 1, 1, 1, 85, 18, '2025-06-16 02:06:11', '2024-01-14 19:00:00', 1),
+(2, 1, 2, 1, 92, 22, '2025-06-16 02:06:11', '2024-01-14 20:30:00', 1),
+(3, 1, 3, 0, NULL, 10, '2025-06-16 02:06:11', NULL, 1),
+(4, 2, 1, 1, 95, 15, '2025-06-16 02:06:11', '2024-01-09 18:00:00', 1),
+(5, 2, 2, 1, 88, 20, '2025-06-16 02:06:11', '2024-01-09 19:30:00', 1),
+(6, 2, 3, 1, 90, 25, '2025-06-16 02:06:11', '2024-01-10 22:00:00', 1),
+(7, 2, 4, 1, 87, 28, '2025-06-16 02:06:11', '2024-01-12 00:00:00', 1),
+(8, 3, 1, 1, 78, 20, '2025-06-16 02:06:11', '2024-01-17 20:00:00', 2),
+(9, 3, 2, 0, NULL, 15, '2025-06-16 02:06:11', NULL, 1),
+(10, 4, 1, 1, 98, 14, '2025-06-16 02:06:11', '2024-01-04 17:30:00', 1),
+(11, 4, 2, 1, 94, 18, '2025-06-16 02:06:11', '2024-01-04 19:00:00', 1),
+(12, 4, 3, 1, 91, 24, '2025-06-16 02:06:11', '2024-01-05 21:30:00', 1),
+(13, 4, 4, 1, 89, 29, '2025-06-16 02:06:11', '2024-01-06 23:00:00', 1),
+(14, 4, 5, 1, 93, 33, '2025-06-16 02:06:11', '2024-01-07 18:30:00', 1);
 
 --
 -- Indexes for dumped tables
@@ -244,8 +250,7 @@ INSERT INTO `user_lessons` (`id`, `user_id`, `lesson_id`, `completed`, `score`, 
 --
 ALTER TABLE `admin_users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD KEY `idx_admin_users_email` (`email`);
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indexes for table `email_change_pins`
@@ -262,37 +267,12 @@ ALTER TABLE `email_tokens`
   ADD KEY `admin_id` (`admin_id`);
 
 --
--- Indexes for table `lessons`
---
-ALTER TABLE `lessons`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idx_lessons_category` (`category`),
-  ADD KEY `idx_lessons_difficulty` (`difficulty_level`),
-  ADD KEY `idx_lessons_is_active` (`is_active`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD KEY `idx_users_email` (`email`),
-  ADD KEY `idx_users_username` (`username`),
-  ADD KEY `idx_users_xp_points` (`xp_points`),
-  ADD KEY `idx_users_level` (`level`),
-  ADD KEY `idx_users_created_at` (`created_at`),
-  ADD KEY `idx_users_is_active` (`is_active`);
-
---
--- Indexes for table `user_lessons`
---
-ALTER TABLE `user_lessons`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `unique_user_lesson` (`user_id`,`lesson_id`),
-  ADD KEY `idx_user_lessons_user_id` (`user_id`),
-  ADD KEY `idx_user_lessons_lesson_id` (`lesson_id`),
-  ADD KEY `idx_user_lessons_completed` (`completed`);
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -302,37 +282,25 @@ ALTER TABLE `user_lessons`
 -- AUTO_INCREMENT for table `admin_users`
 --
 ALTER TABLE `admin_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `email_change_pins`
 --
 ALTER TABLE `email_change_pins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `email_tokens`
 --
 ALTER TABLE `email_tokens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
-
---
--- AUTO_INCREMENT for table `lessons`
---
-ALTER TABLE `lessons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `user_lessons`
---
-ALTER TABLE `user_lessons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
@@ -349,13 +317,6 @@ ALTER TABLE `email_change_pins`
 --
 ALTER TABLE `email_tokens`
   ADD CONSTRAINT `email_tokens_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin_users` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `user_lessons`
---
-ALTER TABLE `user_lessons`
-  ADD CONSTRAINT `user_lessons_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `user_lessons_ibfk_2` FOREIGN KEY (`lesson_id`) REFERENCES `lessons` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
