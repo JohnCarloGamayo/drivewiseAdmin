@@ -501,9 +501,7 @@ while ($row = $countStmt->fetch()) {
                             <option value="resolved">Resolved</option>
                         </select>
                     </div>
-                </div>
-
-                <div class="p-6 border-t border-gray-200 flex-shrink-0">
+                    <div class="p-6 border-t border-gray-200 flex-shrink-0">
                     <div class="flex justify-end space-x-3">
                         <button type="button" onclick="closeModal('replyModal')" class="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors">
                             <i class="fas fa-times mr-2"></i>Cancel
@@ -513,6 +511,8 @@ while ($row = $countStmt->fetch()) {
                         </button>
                     </div>
                 </div>
+                </div>
+
             </form>
         </div>
     </div>

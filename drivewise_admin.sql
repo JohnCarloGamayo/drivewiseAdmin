@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 17, 2025 at 04:31 AM
+-- Generation Time: Jun 17, 2025 at 12:49 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -131,7 +131,8 @@ INSERT INTO `email_tokens` (`id`, `admin_id`, `token`, `expires_at`, `used`, `cr
 (40, 1, '413638', '2025-06-17 02:31:06', 0, '2025-06-17 02:21:06'),
 (41, 1, '546163', '2025-06-17 02:31:17', 0, '2025-06-17 02:21:17'),
 (42, 1, '522553', '2025-06-17 02:24:44', 1, '2025-06-17 02:24:14'),
-(43, 1, '016375', '2025-06-17 02:35:07', 0, '2025-06-17 02:25:07');
+(43, 1, '016375', '2025-06-17 02:35:07', 0, '2025-06-17 02:25:07'),
+(44, 1, '802425', '2025-06-17 10:01:00', 1, '2025-06-17 10:00:43');
 
 -- --------------------------------------------------------
 
@@ -167,6 +168,57 @@ INSERT INTO `lessons` (`id`, `title`, `description`, `content`, `xp_reward`, `di
 (6, 'Weather Conditions', 'Driving in various weather conditions', NULL, 25, 'intermediate', 'Weather', 30, 1, '2025-06-16 02:06:11', '2025-06-16 02:06:11', 6),
 (7, 'Emergency Procedures', 'What to do in emergency situations', NULL, 35, 'advanced', 'Emergency', 40, 1, '2025-06-16 02:06:11', '2025-06-16 02:06:11', 7),
 (8, 'Vehicle Maintenance', 'Basic vehicle maintenance and checks', NULL, 20, 'beginner', 'Maintenance', 25, 1, '2025-06-16 02:06:11', '2025-06-16 02:06:11', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reports`
+--
+
+CREATE TABLE `reports` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `issue_type` enum('bug','feature_request','account_issue','payment_issue','technical_support','other') NOT NULL,
+  `description` text NOT NULL,
+  `screenshot_path` varchar(255) DEFAULT NULL,
+  `status` enum('pending','in_progress','replied','resolved') DEFAULT 'pending',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `reports`
+--
+
+INSERT INTO `reports` (`id`, `user_id`, `issue_type`, `description`, `screenshot_path`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 'bug', 'The app crashes when I try to upload a profile picture. This happens every time I select an image from my gallery.', NULL, 'replied', '2025-06-16 19:39:35', '2025-06-17 00:01:45'),
+(2, 2, 'feature_request', 'It would be great to have a dark mode option in the app. Many users prefer dark themes, especially for night usage.', NULL, 'replied', '2025-06-16 19:39:35', '2025-06-16 23:54:45'),
+(3, 3, 'account_issue', 'I cannot log into my account. I keep getting an \"invalid credentials\" error even though I am sure my password is correct.', NULL, 'in_progress', '2025-06-16 19:39:35', '2025-06-17 10:45:13'),
+(4, 1, 'payment_issue', 'My payment was charged twice for the premium subscription. I need a refund for the duplicate charge.', NULL, 'replied', '2025-06-16 19:39:35', '2025-06-17 10:44:57'),
+(5, 4, 'technical_support', 'The GPS tracking is not working properly. It shows my location incorrectly and the route calculations are wrong.', NULL, 'resolved', '2025-06-16 19:39:35', '2025-06-17 10:35:28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `report_replies`
+--
+
+CREATE TABLE `report_replies` (
+  `id` int(11) NOT NULL,
+  `report_id` int(11) NOT NULL,
+  `admin_id` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `report_replies`
+--
+
+INSERT INTO `report_replies` (`id`, `report_id`, `admin_id`, `message`, `created_at`) VALUES
+(1, 4, 1, 'We are currently investigating this issue and working on a solution. We will keep you updated on our progress and notify you once the issue has been resolved.', '2025-06-17 10:44:57'),
+(2, 3, 1, 'This issue has been resolved. The fix has been implemented and should now be working properly. If you continue to experience any problems, please don\'t hesitate to contact us again.', '2025-06-17 10:45:05'),
+(3, 3, 1, 'We need additional information to help resolve this issue. Could you please provide more details about when this problem occurs and any steps you took before encountering it?', '2025-06-17 10:45:13');
 
 -- --------------------------------------------------------
 
@@ -267,6 +319,21 @@ ALTER TABLE `email_tokens`
   ADD KEY `admin_id` (`admin_id`);
 
 --
+-- Indexes for table `reports`
+--
+ALTER TABLE `reports`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `report_replies`
+--
+ALTER TABLE `report_replies`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `report_id` (`report_id`),
+  ADD KEY `admin_id` (`admin_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -294,7 +361,13 @@ ALTER TABLE `email_change_pins`
 -- AUTO_INCREMENT for table `email_tokens`
 --
 ALTER TABLE `email_tokens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
+-- AUTO_INCREMENT for table `report_replies`
+--
+ALTER TABLE `report_replies`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -317,6 +390,13 @@ ALTER TABLE `email_change_pins`
 --
 ALTER TABLE `email_tokens`
   ADD CONSTRAINT `email_tokens_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin_users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `report_replies`
+--
+ALTER TABLE `report_replies`
+  ADD CONSTRAINT `fk_report_replies_admin_id` FOREIGN KEY (`admin_id`) REFERENCES `admin_users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_report_replies_report_id` FOREIGN KEY (`report_id`) REFERENCES `reports` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
