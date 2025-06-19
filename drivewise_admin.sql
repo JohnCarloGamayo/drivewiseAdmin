@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 17, 2025 at 12:49 PM
+-- Generation Time: Jun 18, 2025 at 09:36 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,7 +44,8 @@ INSERT INTO `admin_users` (`id`, `email`, `password`, `is_verified`, `created_at
 (1, 'johncarlogamayo@gmail.com', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-16 02:20:49', '2025-06-16 09:47:56'),
 (2, 'rafaeliantimothy11@gmail.com', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-15 18:20:49', '2025-06-15 19:16:37'),
 (3, 'papsianrafael@gmail.com\r\n', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-15 18:20:49', '2025-06-15 21:19:15'),
-(4, 'harveyc634@gmail.com', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-15 10:20:49', '2025-06-15 11:16:37');
+(4, 'harveyc634@gmail.com', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-15 10:20:49', '2025-06-15 11:16:37'),
+(5, 'rastynkhenacasio18@gmail.com', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-15 18:20:49', '2025-06-15 19:16:37');
 
 -- --------------------------------------------------------
 
@@ -132,7 +133,14 @@ INSERT INTO `email_tokens` (`id`, `admin_id`, `token`, `expires_at`, `used`, `cr
 (41, 1, '546163', '2025-06-17 02:31:17', 0, '2025-06-17 02:21:17'),
 (42, 1, '522553', '2025-06-17 02:24:44', 1, '2025-06-17 02:24:14'),
 (43, 1, '016375', '2025-06-17 02:35:07', 0, '2025-06-17 02:25:07'),
-(44, 1, '802425', '2025-06-17 10:01:00', 1, '2025-06-17 10:00:43');
+(44, 1, '802425', '2025-06-17 10:01:00', 1, '2025-06-17 10:00:43'),
+(45, 5, '833093', '2025-06-18 02:08:53', 1, '2025-06-18 02:08:25'),
+(46, 5, '700171', '2025-06-18 02:51:11', 0, '2025-06-18 02:41:11'),
+(47, 5, '645518', '2025-06-18 02:53:24', 1, '2025-06-18 02:52:27'),
+(48, 5, '988322', '2025-06-18 04:09:42', 1, '2025-06-18 04:09:05'),
+(49, 5, '864300', '2025-06-18 04:17:11', 1, '2025-06-18 04:16:50'),
+(50, 5, '134425', '2025-06-18 07:36:52', 1, '2025-06-18 07:36:31'),
+(51, 5, '451503', '2025-06-18 15:22:16', 1, '2025-06-18 15:21:00');
 
 -- --------------------------------------------------------
 
@@ -172,6 +180,61 @@ INSERT INTO `lessons` (`id`, `title`, `description`, `content`, `xp_reward`, `di
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `notifications_sent`
+--
+
+CREATE TABLE `notifications_sent` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `recipient_type` enum('all','specific') NOT NULL,
+  `recipient_user_id` int(11) DEFAULT NULL,
+  `recipient_username` varchar(100) DEFAULT NULL,
+  `recipient_email` varchar(255) DEFAULT NULL,
+  `sent_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status` enum('sent','delivered','read','failed') DEFAULT 'sent',
+  `read_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `notifications_sent`
+--
+
+INSERT INTO `notifications_sent` (`id`, `title`, `message`, `recipient_type`, `recipient_user_id`, `recipient_username`, `recipient_email`, `sent_at`, `status`, `read_at`, `created_at`, `updated_at`) VALUES
+(1, 'Welcome to DriveWise!', 'Welcome to DriveWise! Start your learning journey today and improve your driving skills.', 'all', NULL, NULL, NULL, '2025-06-18 13:29:57', 'sent', NULL, '2025-06-18 19:29:57', '2025-06-18 19:29:57'),
+(2, 'App Update', 'We have a new update to our app with [feature].  Please update to the latest version.', 'all', NULL, NULL, NULL, '2025-06-18 13:33:00', 'sent', NULL, '2025-06-18 19:33:00', '2025-06-18 19:33:00'),
+(3, 'Weekly Progress Update', 'Check out your weekly progress and see how much you have improved this week!', 'specific', 8, 'lisa_garcia', 'lisa@example.com', '2025-06-18 13:33:46', 'sent', NULL, '2025-06-18 19:33:46', '2025-06-18 19:33:46');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notification_templates`
+--
+
+CREATE TABLE `notification_templates` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `notification_templates`
+--
+
+INSERT INTO `notification_templates` (`id`, `name`, `title`, `message`, `created_at`, `updated_at`) VALUES
+(1, 'Welcome Message', 'Welcome to DriveWise!', 'Welcome to DriveWise! Start your learning journey today and improve your driving skills.', '2025-06-18 04:16:15', '2025-06-18 04:16:15'),
+(2, 'Weekly Update', 'Weekly Progress Update', 'Check out your weekly progress and see how much you have improved this week!', '2025-06-18 04:16:15', '2025-06-18 04:16:15'),
+(3, 'Achievement Unlock', 'New Achievement Unlocked!', 'Congratulations! You have unlocked a new achievement. Keep up the great work!', '2025-06-18 04:16:15', '2025-06-18 04:16:15'),
+(4, 'App Update', 'App Update', 'We have a new update to our app with [feature].  Please update to the latest version.', '2025-06-18 04:21:18', '2025-06-18 04:21:18');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reports`
 --
 
@@ -183,19 +246,21 @@ CREATE TABLE `reports` (
   `screenshot_path` varchar(255) DEFAULT NULL,
   `status` enum('pending','in_progress','replied','resolved') DEFAULT 'pending',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `notification_read` tinyint(1) DEFAULT 0,
+  `notification_read_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `reports`
 --
 
-INSERT INTO `reports` (`id`, `user_id`, `issue_type`, `description`, `screenshot_path`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'bug', 'The app crashes when I try to upload a profile picture. This happens every time I select an image from my gallery.', NULL, 'replied', '2025-06-16 19:39:35', '2025-06-17 00:01:45'),
-(2, 2, 'feature_request', 'It would be great to have a dark mode option in the app. Many users prefer dark themes, especially for night usage.', NULL, 'replied', '2025-06-16 19:39:35', '2025-06-16 23:54:45'),
-(3, 3, 'account_issue', 'I cannot log into my account. I keep getting an \"invalid credentials\" error even though I am sure my password is correct.', NULL, 'in_progress', '2025-06-16 19:39:35', '2025-06-17 10:45:13'),
-(4, 1, 'payment_issue', 'My payment was charged twice for the premium subscription. I need a refund for the duplicate charge.', NULL, 'replied', '2025-06-16 19:39:35', '2025-06-17 10:44:57'),
-(5, 4, 'technical_support', 'The GPS tracking is not working properly. It shows my location incorrectly and the route calculations are wrong.', NULL, 'resolved', '2025-06-16 19:39:35', '2025-06-17 10:35:28');
+INSERT INTO `reports` (`id`, `user_id`, `issue_type`, `description`, `screenshot_path`, `status`, `created_at`, `updated_at`, `notification_read`, `notification_read_at`) VALUES
+(1, 1, 'bug', 'The app crashes when I try to upload a profile picture. This happens every time I select an image from my gallery.', NULL, 'replied', '2025-06-16 19:39:35', '2025-06-18 18:25:18', 1, '2025-06-18 12:25:18'),
+(2, 2, 'feature_request', 'It would be great to have a dark mode option in the app. Many users prefer dark themes, especially for night usage.', NULL, 'replied', '2025-06-16 19:39:35', '2025-06-18 08:22:17', 0, NULL),
+(3, 3, 'account_issue', 'I cannot log into my account. I keep getting an \"invalid credentials\" error even though I am sure my password is correct.', NULL, 'in_progress', '2025-06-16 19:39:35', '2025-06-18 08:22:17', 0, NULL),
+(4, 1, 'payment_issue', 'My payment was charged twice for the premium subscription. I need a refund for the duplicate charge.', NULL, 'replied', '2025-06-16 19:39:35', '2025-06-18 19:31:12', 1, '2025-06-18 13:31:12'),
+(5, 4, 'technical_support', 'The GPS tracking is not working properly. It shows my location incorrectly and the route calculations are wrong.', NULL, 'resolved', '2025-06-16 19:39:35', '2025-06-18 16:00:47', 1, '2025-06-18 10:00:47');
 
 -- --------------------------------------------------------
 
@@ -236,24 +301,26 @@ CREATE TABLE `users` (
   `modules_done` int(11) DEFAULT 0,
   `points_earned` int(11) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `notification_read` tinyint(1) DEFAULT 0,
+  `notification_read_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `birthday`, `play_time`, `quizzes_passed`, `modules_done`, `points_earned`, `created_at`, `updated_at`) VALUES
-(1, 'john_doe', 'john@example.com', '1995-03-15', 120, 5, 3, 75, '2025-06-16 12:48:05', '2025-06-16 12:48:05'),
-(2, 'jane_smith', 'jane@example.com', '1992-07-22', 450, 15, 8, 250, '2025-06-16 12:48:05', '2025-06-16 12:48:05'),
-(3, 'mike_wilson', 'mike@example.com', '1988-11-10', 890, 35, 20, 650, '2025-06-16 12:48:05', '2025-06-16 12:48:05'),
-(4, 'sarah_jones', 'sarah@example.com', '1997-01-05', 200, 8, 4, 150, '2025-06-16 12:48:05', '2025-06-16 12:48:05'),
-(5, 'alex_brown', 'alex@example.com', '1990-09-18', 1200, 50, 25, 800, '2025-06-16 12:48:05', '2025-06-16 12:48:05'),
-(6, 'emily_davis', 'emily@example.com', '1994-12-03', 60, 2, 1, 25, '2025-06-16 12:48:05', '2025-06-16 12:48:05'),
-(7, 'david_miller', 'david@example.com', '1991-06-28', 350, 12, 7, 320, '2025-06-16 12:48:05', '2025-06-16 12:48:05'),
-(8, 'lisa_garcia', 'lisa@example.com', '1996-04-14', 180, 6, 3, 90, '2025-06-16 12:48:05', '2025-06-16 12:48:05'),
-(9, 'tom_anderson', 'tom@example.com', '1989-08-07', 750, 28, 15, 550, '2025-06-16 12:48:05', '2025-06-16 12:48:05'),
-(10, 'anna_taylor', 'anna@example.com', '1993-02-20', 95, 3, 2, 45, '2025-06-16 12:48:05', '2025-06-16 12:48:05');
+INSERT INTO `users` (`id`, `username`, `email`, `birthday`, `play_time`, `quizzes_passed`, `modules_done`, `points_earned`, `created_at`, `updated_at`, `notification_read`, `notification_read_at`) VALUES
+(1, 'john_doe', 'john@example.com', '1995-03-15', 120, 5, 3, 75, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL),
+(2, 'jane_smith', 'jane@example.com', '1992-07-22', 450, 15, 8, 250, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL),
+(3, 'mike_wilson', 'mike@example.com', '1988-11-10', 890, 35, 20, 650, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL),
+(4, 'sarah_jones', 'sarah@example.com', '1997-01-05', 200, 8, 4, 150, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL),
+(5, 'alex_brown', 'alex@example.com', '1990-09-18', 1200, 50, 25, 800, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL),
+(6, 'emily_davis', 'emily@example.com', '1994-12-03', 60, 2, 1, 25, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL),
+(7, 'david_miller', 'david@example.com', '1991-06-28', 350, 12, 7, 320, '2025-06-16 12:48:05', '2025-06-18 16:01:19', 1, '2025-06-18 10:01:19'),
+(8, 'lisa_garcia', 'lisa@example.com', '1996-04-14', 180, 6, 3, 90, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL),
+(9, 'tom_anderson', 'tom@example.com', '1989-08-07', 750, 28, 15, 550, '2025-06-16 12:48:05', '2025-06-18 19:32:12', 1, '2025-06-18 13:32:12'),
+(10, 'anna_taylor', 'anna@example.com', '1993-02-20', 95, 3, 2, 45, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -319,11 +386,28 @@ ALTER TABLE `email_tokens`
   ADD KEY `admin_id` (`admin_id`);
 
 --
+-- Indexes for table `notifications_sent`
+--
+ALTER TABLE `notifications_sent`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_recipient_user` (`recipient_user_id`),
+  ADD KEY `idx_sent_at` (`sent_at`),
+  ADD KEY `idx_status` (`status`);
+
+--
+-- Indexes for table `notification_templates`
+--
+ALTER TABLE `notification_templates`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `reports`
 --
 ALTER TABLE `reports`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `idx_reports_admin_viewed` (`created_at`),
+  ADD KEY `idx_reports_created_at` (`created_at`);
 
 --
 -- Indexes for table `report_replies`
@@ -339,7 +423,9 @@ ALTER TABLE `report_replies`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `idx_users_notification_read` (`created_at`),
+  ADD KEY `idx_users_created_at` (`created_at`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -349,7 +435,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin_users`
 --
 ALTER TABLE `admin_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `email_change_pins`
@@ -361,7 +447,19 @@ ALTER TABLE `email_change_pins`
 -- AUTO_INCREMENT for table `email_tokens`
 --
 ALTER TABLE `email_tokens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+
+--
+-- AUTO_INCREMENT for table `notifications_sent`
+--
+ALTER TABLE `notifications_sent`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `notification_templates`
+--
+ALTER TABLE `notification_templates`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `report_replies`
@@ -373,7 +471,7 @@ ALTER TABLE `report_replies`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
