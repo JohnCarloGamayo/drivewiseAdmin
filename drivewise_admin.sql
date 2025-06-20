@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 18, 2025 at 09:36 PM
+-- Generation Time: Jun 20, 2025 at 05:30 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -33,19 +33,20 @@ CREATE TABLE `admin_users` (
   `password` varchar(255) NOT NULL,
   `is_verified` tinyint(1) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `layout_preferences` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`layout_preferences`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin_users`
 --
 
-INSERT INTO `admin_users` (`id`, `email`, `password`, `is_verified`, `created_at`, `updated_at`) VALUES
-(1, 'johncarlogamayo@gmail.com', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-16 02:20:49', '2025-06-16 09:47:56'),
-(2, 'rafaeliantimothy11@gmail.com', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-15 18:20:49', '2025-06-15 19:16:37'),
-(3, 'papsianrafael@gmail.com\r\n', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-15 18:20:49', '2025-06-15 21:19:15'),
-(4, 'harveyc634@gmail.com', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-15 10:20:49', '2025-06-15 11:16:37'),
-(5, 'rastynkhenacasio18@gmail.com', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-15 18:20:49', '2025-06-15 19:16:37');
+INSERT INTO `admin_users` (`id`, `email`, `password`, `is_verified`, `created_at`, `updated_at`, `layout_preferences`) VALUES
+(1, 'johncarlogamayo@gmail.com', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-16 02:20:49', '2025-06-16 09:47:56', NULL),
+(2, 'rafaeliantimothy11@gmail.com', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-15 18:20:49', '2025-06-15 19:16:37', NULL),
+(3, 'papsianrafael@gmail.com\r\n', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-15 18:20:49', '2025-06-15 21:19:15', NULL),
+(4, 'harveyc634@gmail.com', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-15 10:20:49', '2025-06-15 11:16:37', NULL),
+(5, 'rastynkhenacasio18@gmail.com', '$2y$10$c0bohylvTdJ8saibApXEN.AIcHqhYURv8dZxu3gABk/v/GzW/EFTG', 1, '2025-06-15 18:20:49', '2025-06-15 19:16:37', NULL);
 
 -- --------------------------------------------------------
 
@@ -140,7 +141,11 @@ INSERT INTO `email_tokens` (`id`, `admin_id`, `token`, `expires_at`, `used`, `cr
 (48, 5, '988322', '2025-06-18 04:09:42', 1, '2025-06-18 04:09:05'),
 (49, 5, '864300', '2025-06-18 04:17:11', 1, '2025-06-18 04:16:50'),
 (50, 5, '134425', '2025-06-18 07:36:52', 1, '2025-06-18 07:36:31'),
-(51, 5, '451503', '2025-06-18 15:22:16', 1, '2025-06-18 15:21:00');
+(51, 5, '451503', '2025-06-18 15:22:16', 1, '2025-06-18 15:21:00'),
+(52, 1, '483022', '2025-06-20 02:39:58', 1, '2025-06-20 02:39:44'),
+(53, 1, '867471', '2025-06-20 02:54:45', 1, '2025-06-20 02:54:35'),
+(54, 1, '314517', '2025-06-20 03:00:19', 1, '2025-06-20 03:00:07'),
+(55, 1, '993298', '2025-06-20 03:09:11', 1, '2025-06-20 03:08:58');
 
 -- --------------------------------------------------------
 
@@ -205,7 +210,8 @@ CREATE TABLE `notifications_sent` (
 INSERT INTO `notifications_sent` (`id`, `title`, `message`, `recipient_type`, `recipient_user_id`, `recipient_username`, `recipient_email`, `sent_at`, `status`, `read_at`, `created_at`, `updated_at`) VALUES
 (1, 'Welcome to DriveWise!', 'Welcome to DriveWise! Start your learning journey today and improve your driving skills.', 'all', NULL, NULL, NULL, '2025-06-18 13:29:57', 'sent', NULL, '2025-06-18 19:29:57', '2025-06-18 19:29:57'),
 (2, 'App Update', 'We have a new update to our app with [feature].  Please update to the latest version.', 'all', NULL, NULL, NULL, '2025-06-18 13:33:00', 'sent', NULL, '2025-06-18 19:33:00', '2025-06-18 19:33:00'),
-(3, 'Weekly Progress Update', 'Check out your weekly progress and see how much you have improved this week!', 'specific', 8, 'lisa_garcia', 'lisa@example.com', '2025-06-18 13:33:46', 'sent', NULL, '2025-06-18 19:33:46', '2025-06-18 19:33:46');
+(3, 'Weekly Progress Update', 'Check out your weekly progress and see how much you have improved this week!', 'specific', 8, 'lisa_garcia', 'lisa@example.com', '2025-06-18 13:33:46', 'sent', NULL, '2025-06-18 19:33:46', '2025-06-18 19:33:46'),
+(4, 'Welcome to DriveWise!', 'Welcome to DriveWise mga ugok! Start your learning journey today and improve your driving skills.', 'all', NULL, NULL, NULL, '2025-06-19 19:32:59', 'sent', NULL, '2025-06-20 01:32:59', '2025-06-20 01:32:59');
 
 -- --------------------------------------------------------
 
@@ -259,7 +265,7 @@ INSERT INTO `reports` (`id`, `user_id`, `issue_type`, `description`, `screenshot
 (1, 1, 'bug', 'The app crashes when I try to upload a profile picture. This happens every time I select an image from my gallery.', NULL, 'replied', '2025-06-16 19:39:35', '2025-06-18 18:25:18', 1, '2025-06-18 12:25:18'),
 (2, 2, 'feature_request', 'It would be great to have a dark mode option in the app. Many users prefer dark themes, especially for night usage.', NULL, 'replied', '2025-06-16 19:39:35', '2025-06-18 08:22:17', 0, NULL),
 (3, 3, 'account_issue', 'I cannot log into my account. I keep getting an \"invalid credentials\" error even though I am sure my password is correct.', NULL, 'in_progress', '2025-06-16 19:39:35', '2025-06-18 08:22:17', 0, NULL),
-(4, 1, 'payment_issue', 'My payment was charged twice for the premium subscription. I need a refund for the duplicate charge.', NULL, 'replied', '2025-06-16 19:39:35', '2025-06-18 19:31:12', 1, '2025-06-18 13:31:12'),
+(4, 1, 'payment_issue', 'My payment was charged twice for the premium subscription. I need a refund for the duplicate charge.', 'HFGHFGHF', 'replied', '2025-06-16 19:39:35', '2025-06-20 02:39:27', 1, '2025-06-18 13:31:12'),
 (5, 4, 'technical_support', 'The GPS tracking is not working properly. It shows my location incorrectly and the route calculations are wrong.', NULL, 'resolved', '2025-06-16 19:39:35', '2025-06-18 16:00:47', 1, '2025-06-18 10:00:47');
 
 -- --------------------------------------------------------
@@ -303,24 +309,26 @@ CREATE TABLE `users` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `notification_read` tinyint(1) DEFAULT 0,
-  `notification_read_at` timestamp NULL DEFAULT NULL
+  `notification_read_at` timestamp NULL DEFAULT NULL,
+  `total_points` int(11) DEFAULT 0,
+  `level` varchar(20) DEFAULT 'beginner'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `birthday`, `play_time`, `quizzes_passed`, `modules_done`, `points_earned`, `created_at`, `updated_at`, `notification_read`, `notification_read_at`) VALUES
-(1, 'john_doe', 'john@example.com', '1995-03-15', 120, 5, 3, 75, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL),
-(2, 'jane_smith', 'jane@example.com', '1992-07-22', 450, 15, 8, 250, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL),
-(3, 'mike_wilson', 'mike@example.com', '1988-11-10', 890, 35, 20, 650, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL),
-(4, 'sarah_jones', 'sarah@example.com', '1997-01-05', 200, 8, 4, 150, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL),
-(5, 'alex_brown', 'alex@example.com', '1990-09-18', 1200, 50, 25, 800, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL),
-(6, 'emily_davis', 'emily@example.com', '1994-12-03', 60, 2, 1, 25, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL),
-(7, 'david_miller', 'david@example.com', '1991-06-28', 350, 12, 7, 320, '2025-06-16 12:48:05', '2025-06-18 16:01:19', 1, '2025-06-18 10:01:19'),
-(8, 'lisa_garcia', 'lisa@example.com', '1996-04-14', 180, 6, 3, 90, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL),
-(9, 'tom_anderson', 'tom@example.com', '1989-08-07', 750, 28, 15, 550, '2025-06-16 12:48:05', '2025-06-18 19:32:12', 1, '2025-06-18 13:32:12'),
-(10, 'anna_taylor', 'anna@example.com', '1993-02-20', 95, 3, 2, 45, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL);
+INSERT INTO `users` (`id`, `username`, `email`, `birthday`, `play_time`, `quizzes_passed`, `modules_done`, `points_earned`, `created_at`, `updated_at`, `notification_read`, `notification_read_at`, `total_points`, `level`) VALUES
+(1, 'john_doe', 'john@example.com', '1995-03-15', 120, 5, 3, 75, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL, 0, 'beginner'),
+(2, 'jane_smith', 'jane@example.com', '1992-07-22', 450, 15, 8, 250, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL, 0, 'beginner'),
+(3, 'mike_wilson', 'mike@example.com', '1988-11-10', 890, 35, 20, 650, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL, 0, 'beginner'),
+(4, 'sarah_jones', 'sarah@example.com', '1997-01-05', 200, 8, 4, 150, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL, 0, 'beginner'),
+(5, 'alex_brown', 'alex@example.com', '1990-09-18', 1200, 50, 25, 800, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL, 0, 'beginner'),
+(6, 'emily_davis', 'emily@example.com', '1994-12-03', 60, 2, 1, 25, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL, 0, 'beginner'),
+(7, 'david_miller', 'david@example.com', '1991-06-28', 350, 12, 7, 320, '2025-06-16 12:48:05', '2025-06-18 16:01:19', 1, '2025-06-18 10:01:19', 0, 'beginner'),
+(8, 'lisa_garcia', 'lisa@example.com', '1996-04-14', 180, 6, 3, 90, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL, 0, 'beginner'),
+(9, 'tom_anderson', 'tom@example.com', '1989-08-07', 750, 28, 15, 550, '2025-06-16 12:48:05', '2025-06-18 19:32:12', 1, '2025-06-18 13:32:12', 0, 'beginner'),
+(10, 'anna_taylor', 'anna@example.com', '1993-02-20', 95, 3, 2, 45, '2025-06-16 12:48:05', '2025-06-18 08:22:17', 0, NULL, 0, 'beginner');
 
 -- --------------------------------------------------------
 
@@ -337,28 +345,29 @@ CREATE TABLE `user_lessons` (
   `time_spent_minutes` int(11) DEFAULT 0,
   `started_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `completed_at` timestamp NULL DEFAULT NULL,
-  `attempts` int(11) DEFAULT 1
+  `attempts` int(11) DEFAULT 1,
+  `points_earned` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user_lessons`
 --
 
-INSERT INTO `user_lessons` (`id`, `user_id`, `lesson_id`, `completed`, `score`, `time_spent_minutes`, `started_at`, `completed_at`, `attempts`) VALUES
-(1, 1, 1, 1, 85, 18, '2025-06-16 02:06:11', '2024-01-14 19:00:00', 1),
-(2, 1, 2, 1, 92, 22, '2025-06-16 02:06:11', '2024-01-14 20:30:00', 1),
-(3, 1, 3, 0, NULL, 10, '2025-06-16 02:06:11', NULL, 1),
-(4, 2, 1, 1, 95, 15, '2025-06-16 02:06:11', '2024-01-09 18:00:00', 1),
-(5, 2, 2, 1, 88, 20, '2025-06-16 02:06:11', '2024-01-09 19:30:00', 1),
-(6, 2, 3, 1, 90, 25, '2025-06-16 02:06:11', '2024-01-10 22:00:00', 1),
-(7, 2, 4, 1, 87, 28, '2025-06-16 02:06:11', '2024-01-12 00:00:00', 1),
-(8, 3, 1, 1, 78, 20, '2025-06-16 02:06:11', '2024-01-17 20:00:00', 2),
-(9, 3, 2, 0, NULL, 15, '2025-06-16 02:06:11', NULL, 1),
-(10, 4, 1, 1, 98, 14, '2025-06-16 02:06:11', '2024-01-04 17:30:00', 1),
-(11, 4, 2, 1, 94, 18, '2025-06-16 02:06:11', '2024-01-04 19:00:00', 1),
-(12, 4, 3, 1, 91, 24, '2025-06-16 02:06:11', '2024-01-05 21:30:00', 1),
-(13, 4, 4, 1, 89, 29, '2025-06-16 02:06:11', '2024-01-06 23:00:00', 1),
-(14, 4, 5, 1, 93, 33, '2025-06-16 02:06:11', '2024-01-07 18:30:00', 1);
+INSERT INTO `user_lessons` (`id`, `user_id`, `lesson_id`, `completed`, `score`, `time_spent_minutes`, `started_at`, `completed_at`, `attempts`, `points_earned`) VALUES
+(1, 1, 1, 1, 85, 18, '2025-06-16 02:06:11', '2024-01-14 19:00:00', 1, 0),
+(2, 1, 2, 1, 92, 22, '2025-06-16 02:06:11', '2024-01-14 20:30:00', 1, 0),
+(3, 1, 3, 0, NULL, 10, '2025-06-16 02:06:11', NULL, 1, 0),
+(4, 2, 1, 1, 95, 15, '2025-06-16 02:06:11', '2024-01-09 18:00:00', 1, 0),
+(5, 2, 2, 1, 88, 20, '2025-06-16 02:06:11', '2024-01-09 19:30:00', 1, 0),
+(6, 2, 3, 1, 90, 25, '2025-06-16 02:06:11', '2024-01-10 22:00:00', 1, 0),
+(7, 2, 4, 1, 87, 28, '2025-06-16 02:06:11', '2024-01-12 00:00:00', 1, 0),
+(8, 3, 1, 1, 78, 20, '2025-06-16 02:06:11', '2024-01-17 20:00:00', 2, 0),
+(9, 3, 2, 0, NULL, 15, '2025-06-16 02:06:11', NULL, 1, 0),
+(10, 4, 1, 1, 98, 14, '2025-06-16 02:06:11', '2024-01-04 17:30:00', 1, 0),
+(11, 4, 2, 1, 94, 18, '2025-06-16 02:06:11', '2024-01-04 19:00:00', 1, 0),
+(12, 4, 3, 1, 91, 24, '2025-06-16 02:06:11', '2024-01-05 21:30:00', 1, 0),
+(13, 4, 4, 1, 89, 29, '2025-06-16 02:06:11', '2024-01-06 23:00:00', 1, 0),
+(14, 4, 5, 1, 93, 33, '2025-06-16 02:06:11', '2024-01-07 18:30:00', 1, 0);
 
 --
 -- Indexes for dumped tables
@@ -447,13 +456,13 @@ ALTER TABLE `email_change_pins`
 -- AUTO_INCREMENT for table `email_tokens`
 --
 ALTER TABLE `email_tokens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `notifications_sent`
 --
 ALTER TABLE `notifications_sent`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `notification_templates`
